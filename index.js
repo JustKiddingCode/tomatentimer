@@ -114,8 +114,7 @@ function resetSettings() {
 }
 
 function initLocalStorage() {
-	today = new Date;
-	today.getDay()
+	today = new Date().toISOString().slice(0,10);
 	localStorage.lastUsed = (localStorage.lastUsed === undefined) ? today : localStorage.lastUsed;
 	localStorage.pomolength = (localStorage.pomolength === undefined) ? 25 : localStorage.pomolength;
 	localStorage.shortbreaklength = (localStorage.shortbreaklength === undefined) ? 5 : localStorage.shortbreaklength;
@@ -124,16 +123,10 @@ function initLocalStorage() {
 	localStorage.mode =  (localStorage.mode === "work") ? localStorage.mode : "free"; 
 	
 	// fix lastUsed
-	if (typeof localStorage.lastUsed !== Date){
+	if (localStorage.lastUsed == today){
 		localStorage.lastUsed = today;
-	}
-	lastUsed = new Date(localStorage.lastUsed);
-	
-	// reset tomatocount if last used is on other day
-	if (! isSameDay(today, lastUsed)) {
-		localStorage.tomatocount =  0;
-	} else {
-		localStorage.tomatocount =  (localStorage.tomatocount === undefined) ? 0 : localStorage.tomatocount;
+		localStorage.tomatocount = 0;
+		localStorage.mode =  "work";
 	}
 }
 
