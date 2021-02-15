@@ -122,8 +122,7 @@ function initLocalStorage() {
 	localStorage.countuntilbigbreak = (localStorage.countuntilbigbreak === undefined) ? 4 : localStorage.countuntilbigbreak;
 	localStorage.mode =  (localStorage.mode === "work") ? localStorage.mode : "free"; 
 	
-	// fix lastUsed
-	if (localStorage.lastUsed == today){
+	if (localStorage.lastUsed != today){
 		localStorage.lastUsed = today;
 		localStorage.tomatocount = 0;
 		localStorage.mode =  "work";

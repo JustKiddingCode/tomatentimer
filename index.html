@@ -1,50 +1,50 @@
 <!doctype html>
-
 <html lang="en">
-<head>
-  <meta charset="utf-8">
+	<head>
+		<meta charset="utf-8">
 
-  <title>Tomatentimer</title>
-  <meta name="description" content="Tomatentimer">
-  <meta name="author" content="Konstantin Zangerle">
+		<title>Tomatentimer</title>
+		<meta name="description" content="Tomatentimer">
+		<meta name="author" content="Konstantin Zangerle">
 
-  <link rel="stylesheet" href="index.css">
-</head>
+		<link rel="stylesheet" href="index.css">
+	</head>
 
-<body>
-  <button id="StartCountdownButton" onlick="timer.start()">Start Count Down</button>
-    <div style="font-size: 40pt;"><span id="time"></span></div>
-    <div> Heute wurden schon <span id="tomatocount"></span> Tomaten erledigt </div>
-    <div>
-      <label class="switch">
+	<body>
+		<button id="StartCountdownButton" onlick="timer.start()">Start Count Down</button>
+		<div style="font-size: 40pt;"><span id="time"></span></div>
+		<div> Heute wurden schon <span id="tomatocount"></span> Tomaten erledigt </div>
+		<div>work
+			<label class="switch">
 				<input type="checkbox">
 				<span class="slider round"></span>
 			</label>
+			free
 		</div>
 
-<table>
-  <tr>
-    <td> Pomodorolänge: </td>
-    <td> <input id="pomolength" type="text" /> </td>
-  </tr>
-  <tr> 
-    <td> kleine Pausenlänge: </td>
-    <td> <input id="shortbreaklength" type="text" /> </td>
-  </tr> 
-  <tr> 
-    <td> große Pausenlänge: </td>
-    <td> <input id="bigbreaklength" type="text" /> </td>
-  </tr> 
-  <tr> 
-    <td> Anzahl Pomodoros bis große Pause: </td>
-    <td> <input id="countuntilbigbreak" type="text" /> </td>
-  </tr>
-  <tr> 
-</table>
-  <button id="SaveSettingsButton">Save Settings</button>
-  <button id="ResetSettingsButton">Reset Settings</button>
- <script src="index.js"> </script>
+		<table>
+			<tr>
+				<td> Pomodorolänge: </td>
+				<td> <input id="pomolength" type="text" /> </td>
+			</tr>
+			<tr> 
+				<td> kleine Pausenlänge: </td>
+				<td> <input id="shortbreaklength" type="text" /> </td>
+			</tr> 
+			<tr> 
+				<td> große Pausenlänge: </td>
+				<td> <input id="bigbreaklength" type="text" /> </td>
+			</tr> 
+			<tr> 
+				<td> Anzahl Pomodoros bis große Pause: </td>
+				<td> <input id="countuntilbigbreak" type="text" /> </td>
+			</tr>
+			<tr> 
+		</table>
+		<button id="SaveSettingsButton">Save Settings</button>
+		<button id="ResetSettingsButton">Reset Settings</button>
+		<script src="index.js"> </script>
 
-</body>
+	</body>
 
 </html>
