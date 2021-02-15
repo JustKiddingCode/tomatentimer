@@ -12,11 +12,12 @@
 
 	<body>
 		<button id="StartCountdownButton" onlick="timer.start()">Start Count Down</button>
+		<button id="PauseTimerButton">Pause Count Down</button>
 		<div style="font-size: 40pt;"><span id="time"></span></div>
 		<div> Heute wurden schon <span id="tomatocount"></span> Tomaten erledigt </div>
 		<div>work
 			<label class="switch">
-				<input type="checkbox">
+				<input type="checkbox" id="workfree-selector">
 				<span class="slider round"></span>
 			</label>
 			free

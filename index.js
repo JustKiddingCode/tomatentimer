@@ -14,6 +14,11 @@ function format(minutes, seconds) {
     display.textContent = minutes + ':' + seconds;
 }
 
+CountDownTimer.prototype.pause = function() {
+	// set duration
+	this.running = false;
+}
+
 CountDownTimer.prototype.start = function() {
   if (this.running) {
     return;
@@ -24,6 +29,10 @@ CountDownTimer.prototype.start = function() {
       diff, obj;
 
   (function timer() {
+    if (! that.running) {
+	    that.duration -= (((Date.now() - start) / 1000) | 0);
+	    return;
+    }
     diff = that.duration - (((Date.now() - start) / 1000) | 0);
 
     if (diff > 0) {
@@ -65,6 +74,11 @@ CountDownTimer.parse = function(seconds) {
 };
 
 function notifyMe() {
+  if (localStorage.mode === "work") {
+	  text = "Enough work for now. Rest a little bit";
+  } else {
+	  text = "Now, continue your great work! ;)";
+  }
   // Let's check if the browser supports notifications
   if (!("Notification" in window)) {
     alert("This browser does not support desktop notification");
@@ -73,7 +87,7 @@ function notifyMe() {
   // Let's check whether notification permissions have alredy been granted
   else if (Notification.permission === "granted") {
     // If it's okay let's create a notification
-    var notification = new Notification("Hi there!");
+    var notification = new Notification(text);
   }
 
   // Otherwise, we need to ask the user for permission
@@ -81,7 +95,7 @@ function notifyMe() {
     Notification.requestPermission(function (permission) {
       // If the user accepts, let's create a notification
       if (permission === "granted") {
-        var notification = new Notification("Hi there!");
+        var notification = new Notification(text);
       }
     });
   }
@@ -103,6 +117,10 @@ function saveSettings() {
 function refreshTomatoCount() {
   document.getElementById("tomatocount").textContent = localStorage.tomatocount;
   return true;
+}
+
+function pauseTimer() {
+	timer.running = false;
 }
 
 function resetSettings() {
@@ -134,11 +152,19 @@ function setDisplay() {
 	document.getElementById("shortbreaklength").value = localStorage.shortbreaklength;
 	document.getElementById("bigbreaklength").value = localStorage.bigbreaklength;
 	document.getElementById("countuntilbigbreak").value = localStorage.countuntilbigbreak;
+	document.getElementById("workfree-selector").checked = (localStorage.mode === "free");
 	document.body.style = (localStorage.mode === "work") ? "background-color: #0099ff;" : "background-color: #ccffcc;";
 }
 
 function startCountdown() {
 	timer.start();
+	setDisplay();
+}
+
+function workfreeChanger() {
+	timer.running = false;
+  	localStorage.mode = (localStorage.mode === "work") ? "free" : "work";
+	initTimer();
 	setDisplay();
 }
 
@@ -172,6 +198,8 @@ window.onload = function () {
     document.querySelector('#StartCountdownButton').addEventListener('click', startCountdown);
     document.querySelector('#SaveSettingsButton').addEventListener('click', saveSettings);
     document.querySelector('#ResetSettingsButton').addEventListener('click', resetSettings);
+    document.querySelector('#PauseTimerButton').addEventListener('click', pauseTimer);
+    document.querySelector('#workfree-selector').addEventListener('change', workfreeChanger);
     
 };
 
